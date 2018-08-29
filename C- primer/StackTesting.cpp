@@ -17,27 +17,31 @@ void stackTest(Stack<T> &theStack, T value, T increment, const std::string stack
         value += increment;
     }
 
-    std::cout << "\n";
+    std::cout << "\n\n" << stackName 
+              << " is full, so cannot pushing " << value << "\n\n"
+              << "Poping elements from " << stackName << std::endl;
+    while(theStack.pop(value))
+    {
+        std::cout << value << ' ';
+    }
+
+    std::cout << '\n' << stackName << " is empty, so cannot pop\n";
+              
 }
 
 int main(int argc, const char * argv[]) {
 
-    Stack<double> doubleStack;
+    Stack<double> doubleStack(10);
     double doubleValue = 1.1;
-    std::cout << "Pushing element onto doubleStack" << std::endl;
+    double d_increment = 1.1;
 
-    //push 5 double onto doubleStack
-    while(doubleStack.push(doubleValue))
-    {
-        std::cout << doubleValue << ' ';
-        doubleValue += 1.1;
-    }//end while
+    Stack<int> intStack(5);
+    int intValue = 1;
+    int int_increment = 1;
 
-    std::cout << "\nStack is full. Cannot push " << doubleValue << "\n\nPoping element from doubleStack\n";
+    stackTest(doubleStack, doubleValue, d_increment, "doubleStack" );
+    std::cout << "\n\n";
 
-    while ( doubleStack.pop(doubleValue) )
-    {
-        std::cout << doubleValue << ' ';
-    }
-        std::cout << "\nStack is empty. Cannot pop\n";
+    stackTest(intStack, intValue, int_increment, "intStack");
+    
 }
